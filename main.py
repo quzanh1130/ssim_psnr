@@ -1,9 +1,11 @@
+import sys
+
 import cv2
 import os
 from skimage.metrics import structural_similarity as compare_ssim
 
-sr_dir = os.listdir('D:\image1')
-hr_dir = os.listdir('D:\image2')
+sr_dir = os.listdir(sys.argv[0])
+hr_dir = os.listdir(sys.argv[1])
 
 psnr = 0.0
 ssim = 0.0
@@ -23,7 +25,7 @@ for hr_image in hr_dir:
             psnr += compute_psnr
             ssim += compute_ssim
             n += 1
-            if n%n == 0:
+            if n%sys.argv[2] == 0:
                 print("finish compute avarage [%d/%d]" % (n, len(hr_dir)))
 
 psnr = psnr / n
